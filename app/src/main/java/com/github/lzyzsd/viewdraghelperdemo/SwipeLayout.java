@@ -68,10 +68,17 @@ public class SwipeLayout extends LinearLayout {
 
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
-            final int leftBound = getPaddingLeft();
-            final int minLeftBound = -leftBound - dragDistance;
-            final int newLeft = Math.min(Math.max(minLeftBound, left), 0);
-            return newLeft;
+            if (child == contentView) {
+                final int leftBound = getPaddingLeft();
+                final int minLeftBound = -leftBound - dragDistance;
+                final int newLeft = Math.min(Math.max(minLeftBound, left), 0);
+                return newLeft;
+            } else {
+                final int minLeftBound = getPaddingLeft() + contentView.getMeasuredWidth() - dragDistance;
+                final int maxLeftBound = getPaddingLeft() + contentView.getMeasuredWidth() + getPaddingRight();
+                final int newLeft = Math.min(Math.max(left, minLeftBound), maxLeftBound);
+                return newLeft;
+            }
         }
 
         @Override
