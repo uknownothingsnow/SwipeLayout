@@ -1,7 +1,6 @@
 package com.github.lzyzsd.viewdraghelperdemo;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
@@ -18,6 +17,8 @@ public class SwipeLayout extends LinearLayout {
     private View contentView;
     private View actionView;
     private int dragDistance;
+    private final double AUTO_OPEN_SPEED_LIMIT = 800.0;
+    private int draggedX;
 
     public SwipeLayout(Context context) {
         this(context, null);
@@ -55,6 +56,7 @@ public class SwipeLayout extends LinearLayout {
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            draggedX = left;
             if (changedView == contentView) {
                 actionView.offsetLeftAndRight(dx);
             } else {
@@ -89,24 +91,29 @@ public class SwipeLayout extends LinearLayout {
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             super.onViewReleased(releasedChild, xvel, yvel);
-            if (Math.abs(contentView.getLeft() -  getLeft()) > dragDistance / 2) {
-                viewDragHelper.smoothSlideViewTo(contentView, getPaddingLeft() - dragDistance, getPaddingTop());
-            } else {
-                viewDragHelper.smoothSlideViewTo(contentView, getPaddingLeft(), getPaddingTop());
+            boolean settleToOpen = false;
+            if (xvel > AUTO_OPEN_SPEED_LIMIT) {
+                settleToOpen = false;
+            } else if (xvel < -AUTO_OPEN_SPEED_LIMIT) {
+                settleToOpen = true;
+            } else if (draggedX <= -dragDistance / 2) {
+                settleToOpen = true;
+            } else if (draggedX > -dragDistance / 2) {
+                settleToOpen = false;
             }
+
+            final int settleDestX = settleToOpen ? -dragDistance : 0;
+            viewDragHelper.smoothSlideViewTo(contentView, settleDestX, 0);
             ViewCompat.postInvalidateOnAnimation(SwipeLayout.this);
         }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        final int action = MotionEventCompat.getActionMasked(ev);
-        if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-            viewDragHelper.cancel();
-            return false;
+        if(viewDragHelper.shouldInterceptTouchEvent(ev)) {
+            return true;
         }
-
-        return viewDragHelper.shouldInterceptTouchEvent(ev);
+        return super.onInterceptTouchEvent(ev);
     }
 
     @Override
