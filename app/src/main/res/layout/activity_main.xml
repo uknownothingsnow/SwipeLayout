@@ -1,5 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:droidicon="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -25,11 +27,40 @@
             android:layout_width="150dp"
             android:layout_height="50dp">
 
-            <Button
+            <com.thedazzler.droidicon.badges.DroidiconBadge
                 android:id="@+id/delete_button"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="Delete"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                droidicon:db_bg_color="#ff0000"
+                droidicon:db_icon_color="#0000ff"
+                droidicon:db_size="100dp"
+                droidicon:db_icon="fa-trash"
+                />
+
+            <com.thedazzler.droidicon.badges.DroidiconBadge
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                droidicon:db_bg_color="#000"
+                droidicon:db_icon_color="#fff"
+                droidicon:db_draw_contour="true"
+                droidicon:db_contour_width="5"
+                droidicon:db_contour_color="#1abc9c"
+                droidicon:db_icon="fa-mobile"
+                droidicon:db_size="30dp"
+                android:layout_marginRight="4dp"
+                />
+
+            <com.thedazzler.droidicon.badges.DroidiconBadge
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                droidicon:db_bg_color="#e67e22"
+                droidicon:db_icon_color="#fff"
+                droidicon:db_icon="entypo-retweet"
+                droidicon:db_size="40dp"
+                droidicon:db_alpha="126"
+                android:layout_marginRight="4dp"
+                />
+
         </LinearLayout>
     </com.github.lzyzsd.viewdraghelperdemo.SwipeLayout>
 </RelativeLayout>

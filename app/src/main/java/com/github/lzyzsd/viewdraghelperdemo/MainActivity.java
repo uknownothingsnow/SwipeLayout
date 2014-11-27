@@ -1,5 +1,6 @@
 package com.github.lzyzsd.viewdraghelperdemo;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.thedazzler.droidicon.badges.DroidiconBadge;
+import com.thedazzler.droidicon.badges.FacebookDroidiconBadge;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -16,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((Button) findViewById(R.id.delete_button)).setOnClickListener(new View.OnClickListener() {
+        (findViewById(R.id.delete_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
@@ -40,7 +44,8 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.youtube) {
+            startActivity(new Intent(this, YoutubeActivity.class));
             return true;
         }
 
