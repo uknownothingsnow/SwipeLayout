@@ -14,10 +14,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#ff0000">
+            android:background="#ffffff">
 
             <TextView android:text="@string/hello_world"
                 android:textSize="20sp"
+                android:paddingLeft="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -26,41 +27,44 @@
         <LinearLayout
             android:layout_width="150dp"
             android:layout_height="50dp">
-
-            <com.thedazzler.droidicon.badges.DroidiconBadge
+            <RelativeLayout
                 android:id="@+id/delete_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                droidicon:db_bg_color="#ff0000"
-                droidicon:db_icon_color="#0000ff"
-                droidicon:db_size="100dp"
-                droidicon:db_icon="fa-trash"
-                />
+                android:clickable="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#ff0000">
+                <View
+                    android:layout_centerInParent="true"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/trash"/>
+            </RelativeLayout>
 
-            <com.thedazzler.droidicon.badges.DroidiconBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                droidicon:db_bg_color="#000"
-                droidicon:db_icon_color="#fff"
-                droidicon:db_draw_contour="true"
-                droidicon:db_contour_width="5"
-                droidicon:db_contour_color="#1abc9c"
-                droidicon:db_icon="fa-mobile"
-                droidicon:db_size="30dp"
-                android:layout_marginRight="4dp"
-                />
+            <RelativeLayout
+                android:id="@+id/view_button"
+                android:clickable="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#c2c2c2">
+                <View
+                    android:layout_centerInParent="true"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/magnifier"/>
+            </RelativeLayout>
 
-            <com.thedazzler.droidicon.badges.DroidiconBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                droidicon:db_bg_color="#e67e22"
-                droidicon:db_icon_color="#fff"
-                droidicon:db_icon="entypo-retweet"
-                droidicon:db_size="40dp"
-                droidicon:db_alpha="126"
-                android:layout_marginRight="4dp"
-                />
-
+            <RelativeLayout
+                android:id="@+id/star_button"
+                android:clickable="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#aaffff">
+                <View
+                    android:layout_centerInParent="true"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/star"/>
+            </RelativeLayout>
         </LinearLayout>
     </com.github.lzyzsd.viewdraghelperdemo.SwipeLayout>
 </RelativeLayout>
