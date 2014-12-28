@@ -1,4 +1,4 @@
-package com.github.lzyzsd.viewdraghelperdemo;
+package com.github.lzyzsd.swipelayoutexample;
 
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
